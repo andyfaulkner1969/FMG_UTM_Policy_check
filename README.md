@@ -10,3 +10,7 @@ first version will prompt for the FMG api user password using getpass
 The FMG IP address and the FMG api user are hard coded and need to be changed to match your values.
 
 I have a lot more information to add here.
+
+Currently, I am not putting "profile type" and "profile protocol options" in the file. 
+But they are there if you want them added.
+

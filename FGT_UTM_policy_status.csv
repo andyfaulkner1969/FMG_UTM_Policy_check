@@ -1,0 +1,129 @@
+UTM Policy Status on Fortigate Firewalls
+-----,-----,-----,-----,-----,-----,-----,-----,-----,-----
+-----,-----,-----,-----,-----,-----,-----,-----,-----,-----
+Current ADOM : Production
+-----,-----,-----,-----,-----,-----,-----,-----,-----,-----
+Policy Package : default
+Number of policies in policy package : 0
+Policy ID,Policy Name,UTM Status,AV Profile,Web Filter Profile,IPS Sensor,DLP Sensor,Application Control Profile,VOIP Profile
+Policy Package : EvilHome-100F
+Number of policies in policy package : 52
+Policy ID,Policy Name,UTM Status,AV Profile,Web Filter Profile,IPS Sensor,DLP Sensor,Application Control Profile,VOIP Profile
+47,Block Malicious FortiGuard, , , , , , , 
+36,Block all IPV6, , , , , , , 
+59,Hit test policy, , , , , , , 
+12,Block Bad Stuff to Mail Server, , , , , , , 
+58,LDAP-test,ON,['AV-EvilBast'],['Block_Bad_Stuff'],['all_default'], ,['block-high-risk'], 
+13,Block Outbound to bad places, , , , , , , 
+2,LAB-75 to Internet,ON,['AV-EvilBast'],['Block_Bad_Stuff'],['default'], ,['block-high-risk'], 
+3,EvilBast to Internet,ON,['AV-EvilBast'],['Block_Bad_Stuff'],['IPS-EvilBast'], ,['block-high-risk'], 
+4,EvilTV to Internet,ON,['AV-EvilBast'],['Block_Bad_Stuff'],['default'], ,['block-high-risk'], 
+5,EvilBast to VLAN-75,ON, , ,['default'], , , 
+51,vlan75 to evilbast,ON, , ,['IPS-EvilBast'], , , 
+6,EvilBast to VLAN-50,ON, , ,['default'], , , 
+7,external mail connection,ON,['AV-EvilBast'], ,['protect_email_server'], , , 
+8,EvilBast to Management, , , , , , , 
+9,VLAN-50 to internet,ON,['default'], ,['all_default'], ,['block-high-risk'], 
+10,VLAN-75 to Internet,ON,['default'], ,['all_default'], ,['block-high-risk'], 
+11,EvilIoT to internet,ON,['default'], ,['all_default'], ,['block-high-risk'], 
+14,EvilBast to VLAN-500,ON, , ,['default'], , , 
+15,VLAN500 to other VLANS,ON, , ,['default'], , , 
+16,Lab VLANs to VLAN-500,ON, , ,['default'], , , 
+21,SSLVPN-connectivity,ON, , ,['default'], , , 
+22,LAB50 to LAB75,ON, , ,['default'], , , 
+23,Switches to Internet NTP, , , , , , , 
+25,EvilBast to AP Network, , , , , , , 
+26,test policy, , , , , , , 
+27,Management to Internet,ON, , ,['default'], , , 
+28,LAB50 to Management, , , , , , , 
+29,management to lab75 faz, , , , , , , 
+30,EvilBast to Sandbox Management, , , , , , , 
+31,Sandbox DIRTY to Internet, , , , , , , 
+32,FortiSandbox Management to Internet, , , , , , , 
+33,VLAN-75 to FortiSandbox, , , , , , , 
+34,VLAN-Management to LAB-75, , , , , , , 
+48,lab-75 to management,ON, , ,['IPS-EvilBast'], , , 
+35,VLAN-75 to VLAN-Management, , , , , , , 
+38,Sandbox Management to VLAN75, , , , , , , 
+39,EvilBast to FEX-TM, , , , , , , 
+40,VLAN-75 to VLAN-500 SNMP,ON, , ,['default'], , , 
+41,EvilBast to Lan, , , , , , , 
+42,LAB to internet, , , , , , , 
+46,ospf lab to internal lab, , , , , , , 
+43,LAB75 t o lan, , , , , , , 
+44,lan to vlan75, , , , , , , 
+45,ospf lab to evilbast, , , , , , , 
+49,EvilTV to DNS, , , , , , , 
+50,Switch Management to Internet, , , , , , , 
+52,evilbast to ap network, , , , , , , 
+53,EvilBast to IOT, , , , , , , 
+55,another test, , , , , , , 
+54,test, , , , , , , 
+56,NO NAME, , , , , , , 
+57,insert, , , , , , , 
+END OF FILE
+-----,-----,-----,-----,-----,-----,-----,-----,-----,-----
+Current ADOM : VM-LAB
+-----,-----,-----,-----,-----,-----,-----,-----,-----,-----
+Policy Package : default
+Number of policies in policy package : 0
+Policy ID,Policy Name,UTM Status,AV Profile,Web Filter Profile,IPS Sensor,DLP Sensor,Application Control Profile,VOIP Profile
+Policy Package : FGT-A
+Number of policies in policy package : 3
+Policy ID,Policy Name,UTM Status,AV Profile,Web Filter Profile,IPS Sensor,DLP Sensor,Application Control Profile,VOIP Profile
+1,Basic Internet, , , , , , , 
+2,Data to internet, , , , , , , 
+3,test, , , , , , , 
+Policy Package : FGT-B_root
+Number of policies in policy package : 2
+Policy ID,Policy Name,UTM Status,AV Profile,Web Filter Profile,IPS Sensor,DLP Sensor,Application Control Profile,VOIP Profile
+1,data to internet, , , , , , , 
+2,internet to data, , , , , , , 
+END OF FILE
+-----,-----,-----,-----,-----,-----,-----,-----,-----,-----
+Current ADOM : root
+-----,-----,-----,-----,-----,-----,-----,-----,-----,-----
+Policy Package : default
+Number of policies in policy package : 0
+Policy ID,Policy Name,UTM Status,AV Profile,Web Filter Profile,IPS Sensor,DLP Sensor,Application Control Profile,VOIP Profile
+Policy Package : EvilBast200-M
+Number of policies in policy package : 37
+Policy ID,Policy Name,UTM Status,AV Profile,Web Filter Profile,IPS Sensor,DLP Sensor,Application Control Profile,VOIP Profile
+25,Block Bad places, , , , , , , 
+43,webmail access, , , , , , , 
+44,Block Bad Senders to Email server, , , , , , , 
+39,email client,ON, , ,['protect_email_server'], , , 
+45,evilbast to port2, , , , , , , 
+47,NO NAME, , , , , , , 
+46,NO NAME, , , , , , , 
+36,VLAN500 to VLAN75, , , , , , , 
+38,FMG external access, , , , , , , 
+28,EvilBast to Lab VLANs, , , , , , , 
+31,Galaxy test,ON,['default'],['Block Security Risk'],['default'], ,['block-high-risk'], 
+26,Ring to SDWAN,ON,['default'],['Block Security Risk'],['high_security'], ,['block-high-risk'], 
+27,EvilBast to SDWAN,ON,['default'],['Block Security Risk'],['all_default'], ,['block-high-risk'], 
+23,EvilTV to SDWAN, , , , , , , 
+18,Softphone access,ON, , , , , ,['SIP_IN']
+9,LABS to EvilBast, , , , , , , 
+7,LAB50 to INTERNET,ON,['default'], ,['default'], , , 
+8,LAB75 to INTERNET, , , , , , , 
+10,EvilBast to ALL WIFI, , , , , , , 
+15,SSL VPN, , , , , , , 
+21,lab50 to lab75, , , , , , , 
+22,lab75 to lab50, , , , , , , 
+30,vpn_Home-Access_remote, , , , , , , 
+34,Home-Access to Internet, , , , , , , 
+24,EvilIOT to internet, , , , , , , 
+60,EvilBast to VLAN600, , , , , , , 
+61,EvilBast to VLAN700, , , , , , , 
+63,Management_NET to SDWAN, , , , , , , 
+64,EvilBast to Management_NET, , , , , , , 
+65,Management to LABS,ON, , ,['default'], , , 
+32,VLAN-600 to LAB75, , , , , , , 
+33,vlan50 to vlan75, , , , , , , 
+37,EvilBast to EvilIoT, , , , , , , 
+40,Access to SDWAN Gateway, , , , , , , 
+41,SDWAN-Gateway to Internet, , , , , , , 
+42,SDWAN to lab75, , , , , , , 
+35,LAB-75 to VLAN-500, , , , , , , 
+END OF FILE

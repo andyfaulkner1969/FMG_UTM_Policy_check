@@ -47,7 +47,7 @@ except Exception as error:
 
 # Default is . the same directory as where the script resides.  Change if you want output file to write to
 # different directory.
-path = "/home/afaulkner/python/"
+path = "./"
 
 # This is an exclusion list of default ADOMs that are installed in FMG by default.  Adding to this list
 # will remove any ADOM from adom choice.
@@ -240,11 +240,16 @@ def policy_fields(policy_pkg):
                      "DLP Sensor", "Application Control Profile", "VOIP Profile"])
     while count_up < count:
         policy_id = str(parsed_json['result'][0]['data'][count_up]['policyid'])
+        # Needed for empty policy names
         try:
             policy_name = str(parsed_json['result'][0]['data'][count_up]['name'])
         except:
             policy_name = "NO NAME"
         utm_status = str(parsed_json['result'][0]['data'][count_up]['utm-status'])
+        if utm_status == "0":
+            utm_status = " "
+        else:
+            utm_status = "ON"
         profile_type = str(parsed_json['result'][0]['data'][count_up]['profile-type'])
         profile_protocol_options = str(parsed_json['result'][0]['data'][count_up]['profile-protocol-options'])
         av_profile = str(parsed_json['result'][0]['data'][count_up]['av-profile'])
