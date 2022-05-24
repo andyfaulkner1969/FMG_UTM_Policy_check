@@ -21,40 +21,55 @@ import json
 import urllib3
 import logging
 import csv
-from getpass import getpass
+import getpass
+from configparser import ConfigParser
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Set flag to DEBUG to get full logging.
-debug_flag = logging.INFO
-logging_file = 'fmg_script.log'
-logging.basicConfig(level=debug_flag, format='%(asctime)s:%(levelname)s:%(message)s')
-# To log to file comment the line above and uncomment the line below.
-# logging.basicConfig(filename=logging_file,level=logging.DEBUG,format='%(asctime)s:%(levelname)s:%(message)s')
+# Config file script_master.ini must be set.
+parser = ConfigParser()
 
-#  If you want to hard code FMG IP, user and password do it here.  OR you can uncomment for prompt
-
-#fmg_ip = input("Enter the IP address of your Fortimanager : ")
-fmg_ip = "192.168.75.201"
-#fmg_user = input("Enter the FortiManager API username: ")
-fmg_user = "api-user"
 try:
-    fmg_passwd = getpass("Enter Password: ",stream=None)
-except Exception as error:
-    print('ERROR', error)
+    parser.read('script_master.ini')
+except:
+    logging.info("script_master.ini file is missing or really screwed up.")
 
-#fmg_passwd = "ENTER PASSWORD"
+# DEBUG confgiuration 
+log_to_file = parser.get('debug','log_to_file')
+logging_file = parser.get('debug','log_file')
+debug_flag = parser.get('debug','debug')
+debug_log_path = parser.get('debug','debug_log_path')
+logging_path_and_file = debug_log_path + logging_file
 
-# Default is . the same directory as where the script resides.  Change if you want output file to write to
-# different directory.
-path = "./"
+if debug_flag == "True":
+    debug_flag_set = logging.DEBUG
+else:
+    debug_flag_set = logging.INFO
+
+if log_to_file == "True":
+    logging.basicConfig(filename=logging_path_and_file,level=debug_flag_set,format='%(asctime)s:%(levelname)s:%(message)s')
+else:
+    logging.basicConfig(level=debug_flag_set,format='%(asctime)s:%(levelname)s:%(message)s')
+
+# FortiManager configuraiton
+fmg_ip = parser.get('settings','fmg_ip')
+fmg_user = parser.get('settings','fmg_user')
+# Look in script_master.ini to see if password has been set.  If not ask.
+fmg_passwd = parser.get('settings','fmg_passwd')
+
+if fmg_passwd == "NONE":
+    fmg_passwd = getpass.getpass("Enter Password: ", stream=None)
+else:
+    pass
+
+# Path for CLI scripts
+
+cli_path = parser.get('directory','cli_path')
 
 # This is an exclusion list of default ADOMs that are installed in FMG by default.  Adding to this list
 # will remove any ADOM from adom choice.
-adom_exclude = ["FortiAnalyzer", "FortiAuthenticator", "FortiCache", "FortiCarrier", "FortiClient",
-                "FortiDDoS", "FortiDeceptor", "FortiFirewall", "FortiFirewallCarrier", "FortiMail",
-                "FortiManager", "FortiNAC", "FortiProxy", "FortiSandbox", "FortiWeb", "Unmanaged_Devices",
-                "rootp", "others", "Syslog"]
+
+adom_exclude = parser.get('settings', 'adom_exclude')
 
 # STATIC global variables do not change
 sid = ""
@@ -63,7 +78,7 @@ adom_list = []
 url_base = "https://" + fmg_ip + "/jsonrpc"
 
 ### CSV file creation
-f = open(path + 'FGT_UTM_policy_status.csv', 'w', newline='')
+f = open(cli_path + 'FGT_UTM_policy_status.csv', 'w', newline='')
 writer = csv.writer(f)
 writer.writerow(["UTM Policy Status on Fortigate Firewalls"])
 writer.writerow(["-----","-----","-----","-----","-----","-----","-----","-----","-----","-----"])
