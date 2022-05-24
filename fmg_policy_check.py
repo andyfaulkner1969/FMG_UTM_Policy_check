@@ -301,7 +301,8 @@ def policy_fields(policy_pkg):
         writer.writerow([policy_id,policy_name,utm_status,av_profile,webfilter_profile,
                         ips_sensor,dlp_sensor,application_list,voip_profile])
 
-        print("Getting UTM features")
+        print("Getting UTM features for policy_id :" + policy_id + " on policy package : " + policy_pkg)
+        logging.debug("Getting UTM features for policy_id :" + str(policy_id) + " on policy package : " + str(policy_pkg))
         count_up = count_up + 1
 
 def main():
